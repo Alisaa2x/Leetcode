@@ -5,21 +5,19 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
+        stack = []
+        next_greater = {}
+
         output = [-1] * len(nums1) 
+        
+        for num in nums2:
+            while stack and num > stack[-1]:
+                prev = stack.pop()
+                next_greater[prev] = num
+            stack.append(num)
 
-        for i in range(len(nums1)):
-            #find where the occurrence of the number we are looking for starts 
-            l = 0  
+        for i in range(len(nums1)): 
+            if nums1[i] in next_greater: 
+                output[i] = next_greater[nums1[i]]
 
-            while l < len(nums2) and nums2[l] != nums1[i]:
-                l += 1 
-
-            #l = 2 
-            while l < len(nums2) and nums2[l] <= nums1[i]:
-                l += 1
-                
-                if l < len(nums2) and nums2[l] > nums1[i]: 
-                    output[i] = nums2[l]
-                    break
-                
-        return output
+        return output 
