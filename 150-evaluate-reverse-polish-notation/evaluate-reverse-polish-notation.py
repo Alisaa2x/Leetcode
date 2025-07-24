@@ -3,23 +3,19 @@ class Solution:
         
         stack = []
 
-        for op in tokens:
-            if op.isdigit() or (op.startswith("-") and op[1:].isdigit()):
-                stack.append(int(op))
-            elif op == "+":
-                b = stack.pop()
-                a = stack.pop()
+        for char in tokens:
+            if char == "+":
+                b,a = stack.pop(), stack.pop()
                 stack.append(a + b)
-            elif op == "-":
-                b = stack.pop()
-                a = stack.pop()
+            elif char == "-":
+                b,a = stack.pop(), stack.pop()
                 stack.append(a - b)
-            elif op == "/":
-                b = stack.pop()
-                a = stack.pop()
+            elif char == "/":
+                b,a = stack.pop(), stack.pop()
                 stack.append(int(a / b))
-            elif op == "*":
-                b = stack.pop()
-                a = stack.pop()
+            elif char == "*":
+                b,a = stack.pop(), stack.pop()
                 stack.append(a * b)
+            else:
+                stack.append(int(char))
         return stack[-1]
