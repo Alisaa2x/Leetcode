@@ -20,3 +20,5 @@ class Solution(object):
             else:
                 r = mid - 1
         return res
+
+        #O(log n)
