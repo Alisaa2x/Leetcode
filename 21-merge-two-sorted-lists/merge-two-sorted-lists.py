@@ -17,7 +17,6 @@ class Solution:
                 list2 = list2.next
             ptr = ptr.next
 
-
         ptr.next = list1 or list2
 
         return res.next
